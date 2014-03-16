@@ -14,7 +14,6 @@ nginx::server { $domain_name:
 nginx::server::location { "everything":
   location => "~ .*",
   server => $domain_name,
-  server_config_file_name => $server_config_file_name,
   order => 52,
   content => "
         root /var/www/$domain_name;

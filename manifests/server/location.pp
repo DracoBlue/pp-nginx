@@ -3,10 +3,11 @@ define nginx::server::location (
   $server                       = undef,
   $location                     = $name,
   $location_config_template     = "nginx/conf.d/location.conf.erb",
-  $server_config_file_name      = "/etc/nginx/conf.d/${server}.conf",
   $order                        = 50,
   $content                      = ""
 ) {
+  $server_config_file_name = getparam(Nginx::Server[$server], "server_config_file_name")
+
   concat::fragment{ "${server_config_file_name}_location_${name}":
     ensure  => $ensure,
     target  => $server_config_file_name,

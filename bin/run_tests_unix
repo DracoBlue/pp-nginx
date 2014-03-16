@@ -13,6 +13,10 @@ SUCCESSFUL_TESTS=0
 while read line
 do
   WITHOUT_EXTENSION=`echo $line | rev | cut -f 2- -d '.' | rev`
+  if [ -f "/tmp/pp-nginx-results/${WITHOUT_EXTENSION}.conf" ]
+  then
+    rm /tmp/pp-nginx-results/${WITHOUT_EXTENSION}.conf
+  fi
   puppet apply --modulepath=`pwd`/modules "$line"
   diff ${WITHOUT_EXTENSION}.txt /tmp/pp-nginx-results/${WITHOUT_EXTENSION}.conf
   if [ "$?" == 0 ]
