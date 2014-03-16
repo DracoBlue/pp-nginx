@@ -2,9 +2,9 @@
 
 A very slim nginx module for puppet.
 
-* Version: 0.1-dev
+* Version: 1.0.0
 * Build-Status: [![Build Status](https://travis-ci.org/DracoBlue/pp-nginx.png?branch=master)](https://travis-ci.org/DracoBlue/pp-nginx)
-* Date: Not yet released
+* Date: 2014/03/16
 * Official Site: http://dracoblue.net/
 
 pp-ningx is copyright 2014 by DracoBlue http://dracoblue.net

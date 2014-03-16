@@ -1,0 +1,11 @@
+name    'dracoblue-nginx'
+version '1.0.0'
+source 'http://github.com/dracoblue/pp-nginx'
+author 'DracoBlue'
+license 'MIT'
+summary 'NGINX module for Puppet >=3.0x'
+description 'This module can be used for basic NGINX Management'
+project_page 'http://github.com/dracoblue/pp-nginx'
+
+dependency 'puppetlabs/stdlib', '>= 4.0.0'
+dependency 'puppetlabs/concat', '>= 1.0.0'
