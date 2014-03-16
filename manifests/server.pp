@@ -1,6 +1,5 @@
 define nginx::server (
   $ensure                       = present,
-  $server_name                  = [$name],
   $server_config_header_template = "nginx/conf.d/server_header.conf.erb",
   $server_config_footer_template = "nginx/conf.d/server_footer.conf.erb",
   $server_config_file_name      = "/etc/nginx/conf.d/${name}.conf",
