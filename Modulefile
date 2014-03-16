@@ -1,4 +1,4 @@
-name    'dracoblue-nginx'
+name    'DracoBlue-nginx'
 version '1.0.0'
 source 'http://github.com/dracoblue/pp-nginx'
 author 'DracoBlue'

@@ -11,7 +11,13 @@ pp-ningx is copyright 2014 by DracoBlue http://dracoblue.net
 
 # Installation
 
-Installation will be available via `puppet module`. So long use the latest version from git.
+Latest version from puppet forge:
+
+``` console
+$ puppet module install DracoBlue-nginx
+```
+
+Latest version from git.
 
 ``` console
 $ cd modules
