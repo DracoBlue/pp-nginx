@@ -1,14 +1,13 @@
 define nginx::server::location::alias (
   $ensure                       = present,
   $server                       = undef,
-  $alias                        = undef,
+  $location_alias               = undef,
   $location                     = $name,
   $location_config_template     = "nginx/conf.d/location.conf.erb",
-  $server_config_file_name      = "/etc/nginx/conf.d/${server}.conf",
   $order                        = 50,
   $content                      = undef
 ) {
-  $alias_content = "        alias ${alias};"
+  $alias_content = "        alias ${location_alias};"
 
   if $content == undef {
     $expanded_content = "${alias_content}"
