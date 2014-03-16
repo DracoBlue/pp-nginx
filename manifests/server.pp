@@ -17,6 +17,12 @@ define nginx::server (
       mode  => $server_config_mode,
     }
 
+   if defined(Service['nginx']) {
+    Concat["$server_config_file_name"] {
+      notify => Service['nginx']
+    }
+   }
+
     concat::fragment{ "${server_config_file_name}_header":
       target  => $server_config_file_name,
       content => template($server_config_header_template),

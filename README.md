@@ -42,7 +42,7 @@ nginx::server::location { "assets":
   location => "~ ^/",
   server => $server,
   content => "
-        root /var/www/assets/
+        root /var/www/assets/;
   "
 }
 ```
@@ -57,7 +57,7 @@ server {
 
     location ~ ^/ {
 
-        root /var/www/assets/
+        root /var/www/assets/;
 
     }
 }

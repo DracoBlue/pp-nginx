@@ -1,13 +1,11 @@
 class nginx::service (
   $ensure = running,
-  $enable = true,
-  $hasstatus = true,
-  $hasrestart = true
+  $enable = true
 ) {
   service { 'nginx':
     ensure => $ensure,
     enable => $enable,
-    hasstatus => $hasstatus,
-    hasrestart => $hasrestart
+    hasstatus => true,
+    hasrestart => true
   }
 }
