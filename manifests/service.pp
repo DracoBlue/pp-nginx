@@ -1,4 +1,4 @@
-define nginx::service (
+class nginx::service (
   $ensure = running,
   $enable = true,
   $hasstatus = true,

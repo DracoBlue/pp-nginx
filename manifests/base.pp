@@ -1,9 +1,9 @@
 class nginx::base (
   $service = 'nginx'
 ) {
-  if defined(Nginx::Service[$service]) {
+  if defined('nginx::service') {
     File {
-      notify => Nginx::Service[$service]
+      notify => Class['nginx::service']
     }
   }
 }
