@@ -28,6 +28,8 @@ Todo: Add examples.
 $ make test
 ```
 
+Hint: The tests will need sudo rights and will write into /tmp/pp-nginx-results. Every other file should not be affected.
+
 # License
 
 pp-nginx is licensed under the terms of MIT.
