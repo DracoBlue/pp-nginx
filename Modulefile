@@ -1,5 +1,5 @@
 name    'DracoBlue-nginx'
-version '1.0.0'
+version 'dev'
 source 'http://github.com/dracoblue/pp-nginx'
 author 'DracoBlue'
 license 'MIT'
