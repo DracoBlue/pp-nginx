@@ -8,6 +8,8 @@ define nginx::server (
   $server_config_mode           = '0644',
   $content                      = ""
 ) {
+  include nginx::base
+
   if $ensure == present {
     concat { "$server_config_file_name":
       owner => $server_config_owner,

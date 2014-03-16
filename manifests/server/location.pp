@@ -6,6 +6,8 @@ define nginx::server::location (
   $order                        = 50,
   $content                      = ""
 ) {
+  include nginx::base
+
   $server_config_file_name = getparam(Nginx::Server[$server], "server_config_file_name")
 
   concat::fragment{ "${server_config_file_name}_location_${name}":
