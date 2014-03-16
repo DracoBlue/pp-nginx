@@ -12,8 +12,8 @@ test-update-required-modules:
 
 test-ensure-required-modules:
 
-	@if [ ! -d tests/modules/stdlib ]; then git clone https://github.com/puppetlabs/puppetlabs-stdlib.git tests/modules/stdlib; fi
-	@if [ ! -d tests/modules/concat ]; then git clone https://github.com/puppetlabs/puppetlabs-concat.git tests/modules/concat; fi
+	@if [ ! -d tests/modules/stdlib ]; then cd tests/modules; wget -q https://forgeapi.puppetlabs.com/v3/files/puppetlabs-stdlib-4.1.0.tar.gz && tar -zxf puppetlabs-stdlib-* && rm puppetlabs-stdlib-*.tar.gz && mv puppetlabs-stdlib-* stdlib; cd ../../; fi
+	@if [ ! -d tests/modules/concat ]; then cd tests/modules; wget -q https://forgeapi.puppetlabs.com/v3/files/puppetlabs-concat-1.0.2.tar.gz && tar -zxf puppetlabs-concat-* && rm puppetlabs-concat-*.tar.gz && mv puppetlabs-concat-* concat; cd ../../; fi
 
 test:
 
