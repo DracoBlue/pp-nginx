@@ -10,7 +10,7 @@ pp-ningx is copyright 2014 by DracoBlue http://dracoblue.net
 
 # Installation
 
-Latest version from puppet forge:
+Latest version from [puppet forge](forge.puppetlabs.com/DracoBlue/nginx):
 
 ``` console
 $ puppet module install DracoBlue-nginx
@@ -203,7 +203,7 @@ Hint: The tests will need sudo rights and will write into /tmp/pp-nginx-results.
 
 # Changelog
 
-* 1.1.0 (2014/03/17)
+* dev
   - added `nginx::server::location::auth-basic` #8
   - added base type `nginx::server::location::fragment` #7
   - added `nginx::server::location::access` #6
