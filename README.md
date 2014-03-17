@@ -141,6 +141,9 @@ nginx::server::location::access { "assets-directory":
 }
 ```
 
+The `access` fragment will always put `allow` definitions before `deny` definitions. If you want to have some `deny` rules
+before the `allow` rules, use two `access` definitions (like in `tests/access-location-with-multiple-blocks.example.org.pp`).
+
 See `tests/access-location.example.org.pp` for more examples.
 
 ### `nginx::server::location::auth-basic`
