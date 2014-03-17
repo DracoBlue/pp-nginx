@@ -1,5 +1,8 @@
 #!/bin/bash
 
+puppet --version
+export
+
 if [ ! `puppet --version | grep "$PUPPET_VERSION"` ]
 then
     apt-get install --yes lsb-release
@@ -15,5 +18,5 @@ then
         sudo dpkg -i $DEB
         sudo apt-get update
     fi
-    sudo apt-get install --yes puppet=${PUPPET_VERSION}* puppet-common=${PUPPET_VERSION}*
+    sudo apt-get install --force-yes --yes puppet=${PUPPET_VERSION}* puppet-common=${PUPPET_VERSION}*
 fi
