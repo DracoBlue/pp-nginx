@@ -116,12 +116,13 @@ See `tests/simple-locations.example.org.pp` for more examples.
 
 ### `nginx::server::location::alias`
 
-Adds a `alias` definition to the given `$location` in the specified `$server`.
+Adds a `alias` definition to map to a `$local_directory` for to the given `$location` in the specified `$server`.
 
 ``` ruby
 nginx::server::location::alias { "assets-directory":
   server => 'example.org',
-  location => 'assets'
+  location => 'assets',
+  local_directory => '/var/www/assets/$1'
 }
 ```
 
