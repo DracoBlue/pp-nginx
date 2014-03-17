@@ -203,7 +203,7 @@ Hint: The tests will need sudo rights and will write into /tmp/pp-nginx-results.
 
 # Changelog
 
-* dev
+* 1.1.0 (2014/03/17)
   - added `nginx::server::location::auth-basic` #8
   - added base type `nginx::server::location::fragment` #7
   - added `nginx::server::location::access` #6
