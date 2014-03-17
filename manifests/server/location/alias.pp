@@ -19,7 +19,7 @@ define nginx::server::location::alias (
 ${content}"
   }
 
-  concat::fragment{ "${server_config_file_name}_location_${name}_body":
+  concat::fragment{ "${server_config_file_name}_location_alias_${name}":
     ensure  => $ensure,
     target  => $server_config_file_name,
     content => $expanded_content,
