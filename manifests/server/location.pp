@@ -10,7 +10,15 @@ define nginx::server::location (
 ) {
   include nginx::base
 
-  $server_config_file_name = getparam(Nginx::Server[$server], "server_config_file_name")
+  if $server == undef {
+    fail("Please provide a $server for this location")
+  }
+
+  if is_string($server) {
+    fail("Please provide a Nginx::Server as $server for this location")
+  }
+
+  $server_config_file_name = getparam($server, "server_config_file_name")
 
   concat::fragment{ "${server_config_file_name}_location_${name}_header":
     ensure => $ensure,

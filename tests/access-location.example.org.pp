@@ -13,45 +13,45 @@ nginx::server { $domain_name:
 
 nginx::server::location { "with-content":
   location => "~ /first/",
-  server => $domain_name,
+  server => Nginx::Server[$domain_name],
   content => "
         index index.html;
 "
 }
 
 nginx::server::location::access { "access-with-content":
-  location => "with-content",
+  location => Nginx::Server::Location["with-content"],
   allow => ['all', '127.0.0.1'],
   deny => ['all', '127.0.0.1'],
 }
 
 nginx::server::location { "without-content":
   location => "~ /second/",
-  server => $domain_name,
+  server => Nginx::Server[$domain_name],
 }
 
 nginx::server::location::access { "access-without-content":
-  location => "without-content",
+  location => Nginx::Server::Location["without-content"],
   allow => ['all', '127.0.0.1'],
   deny => ['all', '127.0.0.1'],
 }
 
 nginx::server::location { "without-deny":
   location => "~ /third/",
-  server => $domain_name,
+  server => Nginx::Server[$domain_name],
 }
 
 nginx::server::location::access { "access-without-deny":
-  location => "without-deny",
+  location => Nginx::Server::Location["without-deny"],
   allow => ['all', '127.0.0.1']
 }
 
 nginx::server::location { "without-allow":
   location => "~ /fourth/",
-  server => $domain_name,
+  server => Nginx::Server[$domain_name],
 }
 
 nginx::server::location::access { "access-without-allow":
-  location => "without-allow",
+  location => Nginx::Server::Location["without-allow"],
   deny => ['all', '127.0.0.1']
 }

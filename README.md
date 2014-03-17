@@ -42,10 +42,9 @@ nginx::server { $server:
 }
 
 # define a location
-
 nginx::server::location { "assets":
   location => "~ ^/",
-  server => $server,
+  server => Nginx::Server[$server],
   content => "
         root /var/www/assets/;
 "
@@ -104,7 +103,7 @@ Adds a `location` block definition to the given `$server`.
 
 ``` ruby
 nginx::server::location { "assets":
-  server => 'example.org',
+  server => Nginx::Server['example.org'],
   location => '~ ^/assets/(.+)',
   content => "
       root /var/www;
@@ -120,7 +119,7 @@ Adds an `alias` definition to map to a `$directory` for to the given `$location`
 
 ``` ruby
 nginx::server::location::alias { "assets-directory":
-  location => 'assets',
+  location => Nginx::Server::Location['assets'],
   directory => '/var/www/assets/$1'
 }
 ```
@@ -133,7 +132,7 @@ Adds `allow` and `deny` definitions to a given `$location`.
 
 ``` ruby
 nginx::server::location::access { "assets-directory":
-  location => 'assets',
+  location => Nginx::Server::Location['assets'],
   allow => ["127.0.0.1", "10.10.10.0/26"],
   deny => ["192.168.0.1"]
 }
@@ -152,7 +151,7 @@ Be sure that nginx can access the absolute path given to in `$user_file`. The `$
 
 ``` ruby
 nginx::server::location::auth-basic { "assets-directory":
-  location => 'assets',
+  location => Nginx::Server::Location['assets'],
   text => 'This is restricted',
   user_file => '/etc/nginx/.htpasswd'
 }
@@ -202,6 +201,7 @@ Hint: The tests will need sudo rights and will write into /tmp/pp-nginx-results.
 # Changelog
 
 * dev
+  - Changed properties for `$location` and `$server` to resources instead of strings
   - Removed `$server` parameter for `nginx::server::location::*` #9
 * 1.1.0 (2014/03/17)
   - added `nginx::server::location::auth-basic` #8

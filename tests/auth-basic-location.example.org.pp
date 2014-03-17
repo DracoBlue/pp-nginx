@@ -13,25 +13,25 @@ nginx::server { $domain_name:
 
 nginx::server::location { "with-content":
   location => "~ /assets/",
-  server => $domain_name,
+  server => Nginx::Server[$domain_name],
   content => "
         index index.html;
 "
 }
 
 nginx::server::location::auth-basic { "auth-basic-with-content":
-  location => "with-content",
+  location => Nginx::Server::Location["with-content"],
   text => 'This is restricted',
   user_file => '/dev/null'
 }
 
 nginx::server::location { "without-content":
   location => "~ /other-assets/",
-  server => $domain_name,
+  server => Nginx::Server[$domain_name],
 }
 
 nginx::server::location::auth-basic { "auth-basic-without-content":
-  location => "without-content",
+  location => Nginx::Server::Location["without-content"],
   text => 'This is restricted',
   user_file => '/dev/null'
 }

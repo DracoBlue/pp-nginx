@@ -24,16 +24,16 @@ nginx::server { $domain_name:
 
 nginx::server::location { "with-multiple-blocks":
   location => "~ /fives/",
-  server => $domain_name,
+  server => Nginx::Server[$domain_name],
 }
 
 nginx::server::location::access { "block-one-with-multiple-blocks":
-  location => "with-multiple-blocks",
+  location => Nginx::Server::Location["with-multiple-blocks"],
   deny => ['192.168.1.1']
 }
 
 nginx::server::location::access { "block-two-with-multiple-blocks":
-  location => "with-multiple-blocks",
+  location => Nginx::Server::Location["with-multiple-blocks"],
   allow => ['192.168.1.0/24', '10.1.1.0/16', '2620:100:e000::8001'],
   deny => ['all']
 }
