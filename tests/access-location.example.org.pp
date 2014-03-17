@@ -20,7 +20,6 @@ nginx::server::location { "with-content":
 }
 
 nginx::server::location::access { "access-with-content":
-  server => $domain_name,
   location => "with-content",
   allow => ['all', '127.0.0.1'],
   deny => ['all', '127.0.0.1'],
@@ -33,7 +32,6 @@ nginx::server::location { "without-content":
 
 nginx::server::location::access { "access-without-content":
   location => "without-content",
-  server => $domain_name,
   allow => ['all', '127.0.0.1'],
   deny => ['all', '127.0.0.1'],
 }
@@ -45,7 +43,6 @@ nginx::server::location { "without-deny":
 
 nginx::server::location::access { "access-without-deny":
   location => "without-deny",
-  server => $domain_name,
   allow => ['all', '127.0.0.1']
 }
 
@@ -56,6 +53,5 @@ nginx::server::location { "without-allow":
 
 nginx::server::location::access { "access-without-allow":
   location => "without-allow",
-  server => $domain_name,
   deny => ['all', '127.0.0.1']
 }

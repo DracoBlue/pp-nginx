@@ -3,7 +3,6 @@ define nginx::server::location::alias (
   $content = undef,
   $config_template = "nginx/conf.d/location/alias.conf.erb",
 
-  $server = undef,
   $location	= undef,
   $ensure = present,
   $order = "050",
@@ -13,7 +12,6 @@ define nginx::server::location::alias (
   nginx::server::location::fragment { "alias_${name}":
     content => template($config_template),
 
-    server => $server,
     location => $location,
     ensure => $ensure,
     order => $order,

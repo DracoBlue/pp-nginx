@@ -20,7 +20,6 @@ nginx::server::location { "with-content":
 }
 
 nginx::server::location::auth-basic { "auth-basic-with-content":
-  server => $domain_name,
   location => "with-content",
   text => 'This is restricted',
   user_file => '/dev/null'
@@ -33,7 +32,6 @@ nginx::server::location { "without-content":
 
 nginx::server::location::auth-basic { "auth-basic-without-content":
   location => "without-content",
-  server => $domain_name,
   text => 'This is restricted',
   user_file => '/dev/null'
 }

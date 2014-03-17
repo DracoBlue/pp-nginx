@@ -29,13 +29,11 @@ nginx::server::location { "with-multiple-blocks":
 
 nginx::server::location::access { "block-one-with-multiple-blocks":
   location => "with-multiple-blocks",
-  server => $domain_name,
   deny => ['192.168.1.1']
 }
 
 nginx::server::location::access { "block-two-with-multiple-blocks":
   location => "with-multiple-blocks",
-  server => $domain_name,
   allow => ['192.168.1.0/24', '10.1.1.0/16', '2620:100:e000::8001'],
   deny => ['all']
 }

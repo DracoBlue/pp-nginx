@@ -20,7 +20,6 @@ nginx::server::location { "with-content":
 }
 
 nginx::server::location::alias { "alias-with-content":
-  server => $domain_name,
   location => "with-content",
   directory => '/var/www/$domain_name/assets/$1',
 }
@@ -32,6 +31,5 @@ nginx::server::location { "without-content":
 
 nginx::server::location::alias { "alias-without-content":
   location => "without-content",
-  server => $domain_name,
   directory => '/var/www/$domain_name/assets/$1',
 }

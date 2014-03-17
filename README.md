@@ -116,11 +116,10 @@ See `tests/simple-locations.example.org.pp` for more examples.
 
 ### `nginx::server::location::alias`
 
-Adds an `alias` definition to map to a `$directory` for to the given `$location` in the specified `$server`.
+Adds an `alias` definition to map to a `$directory` for to the given `$location`.
 
 ``` ruby
 nginx::server::location::alias { "assets-directory":
-  server => 'example.org',
   location => 'assets',
   directory => '/var/www/assets/$1'
 }
@@ -130,11 +129,10 @@ See `tests/alias-location.example.org.pp` for more examples.
 
 ### `nginx::server::location::access`
 
-Adds `allow` and `deny` definitions to a given `$location` in the specified `$server`.
+Adds `allow` and `deny` definitions to a given `$location`.
 
 ``` ruby
 nginx::server::location::access { "assets-directory":
-  server => 'example.org',
   location => 'assets',
   allow => ["127.0.0.1", "10.10.10.0/26"],
   deny => ["192.168.0.1"]
@@ -148,13 +146,12 @@ See `tests/access-location.example.org.pp` for more examples.
 
 ### `nginx::server::location::auth-basic`
 
-Adds `auth_basic` and `auth_basic_user_file` definitions to a given `$location` in the specified `$server`.
+Adds `auth_basic` and `auth_basic_user_file` definitions to a given `$location`.
 
 Be sure that nginx can access the absolute path given to in `$user_file`. The `$text` must not contain quotation marks (").
 
 ``` ruby
 nginx::server::location::auth-basic { "assets-directory":
-  server => 'example.org',
   location => 'assets',
   text => 'This is restricted',
   user_file => '/etc/nginx/.htpasswd'
@@ -177,7 +174,6 @@ define nginx::server::location::access (
   $content = undef,
   $config_template = "nginx/conf.d/location/access.conf.erb",
 
-  $server = undef,
   $location	= undef,
   $ensure = present,
   $order = "050",
@@ -188,7 +184,6 @@ define nginx::server::location::access (
   nginx::server::location::fragment { "access_${name}":
     content => template($config_template),
 
-    server => $server,
     location => $location,
     ensure => $ensure,
     order => $order,
@@ -207,6 +202,8 @@ Hint: The tests will need sudo rights and will write into /tmp/pp-nginx-results.
 # Changelog
 
 * dev
+  - Removed `$server` parameter for `nginx::server::location::*` #9
+* 1.1.0 (2014/03/17)
   - added `nginx::server::location::auth-basic` #8
   - added base type `nginx::server::location::fragment` #7
   - added `nginx::server::location::access` #6
