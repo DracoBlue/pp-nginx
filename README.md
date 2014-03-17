@@ -143,6 +143,39 @@ nginx::server::location::access { "assets-directory":
 
 See `tests/access-location.example.org.pp` for more examples.
 
+### (private) `nginx::server::location::fragment`
+
+This type is used within `nginx::server::location::access` and other `nginx::server::location::*` types to generate
+the location fragment into the `nginx::server::location`.
+
+Example usage (taken from `nginx::server::location::access`):
+
+``` ruby
+define nginx::server::location::access (
+  $allow                        = [],
+  $deny                         = [],
+  $content                      = undef,
+  $config_template              = "nginx/conf.d/location/access.conf.erb",
+
+  $server                       = undef,
+  $location			            = undef,
+  $ensure                       = present,
+  $order                        = "050",
+) {
+  validate_array($allow)
+  validate_array($deny)
+
+  nginx::server::location::fragment { "access_${name}":
+    content => template($config_template),
+
+    server => $server,
+    location => $location,
+    ensure => $ensure,
+    order => $order,
+  }
+}
+```
+
 # Run tests
 
 ``` console
@@ -154,6 +187,7 @@ Hint: The tests will need sudo rights and will write into /tmp/pp-nginx-results.
 # Changelog
 
 * dev
+  - added base type `nginx::server::location::fragment` #7
   - added `nginx::server::location::access` #6
   - travis now tests multiple puppet versions #5
   - `nginx::server::location::alias` adds the alias definition, to the nginx location specified #3
