@@ -10,7 +10,7 @@ pp-ningx is copyright 2014 by DracoBlue http://dracoblue.net
 
 # Installation
 
-Latest version from [puppet forge](forge.puppetlabs.com/DracoBlue/nginx):
+Latest version from [puppet forge](http://forge.puppetlabs.com/DracoBlue/nginx):
 
 ``` console
 $ puppet module install DracoBlue-nginx
