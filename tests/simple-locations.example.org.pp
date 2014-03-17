@@ -17,6 +17,6 @@ nginx::server::location { "everything":
   order => 52,
   content => "
         root /var/www/$domain_name;
-  "
+"
 }
 

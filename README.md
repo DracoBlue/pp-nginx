@@ -48,7 +48,7 @@ nginx::server::location { "assets":
   server => $server,
   content => "
         root /var/www/assets/;
-  "
+"
 }
 ```
 
@@ -63,7 +63,6 @@ server {
     location ~ ^/ {
 
         root /var/www/assets/;
-
     }
 }
 ```
@@ -81,7 +80,52 @@ There are only 3 classes in this puppet module.
 
 ## Types
 
-See the Example at the beginning for explanation how the `nginx::server` and `nginx::location` type work.
+See the Example at the beginning for explanation how the `nginx::server` and `nginx::location` type work together.
+
+### `nginx::server`
+
+Adds a new `server` in a file called `/etc/nginx/conf.d/$name.conf`.
+
+``` ruby
+nginx::server { "example.org":
+  server => 'example.org',
+  content => "
+    listen *:80;
+    server_name example.org;
+"
+}
+```
+
+See `tests/simple.example.org.pp` for more examples.
+
+### `nginx::server::location`
+
+Adds a `location` block definition to the given `$server`.
+
+``` ruby
+nginx::server::location { "assets":
+  server => 'example.org',
+  location => '~ ^/assets/(.+)',
+  content => "
+      root /var/www;
+"
+}
+```
+
+See `tests/simple-locations.example.org.pp` for more examples.
+
+### `nginx::server::location::alias`
+
+Adds a `alias` definition to the given `$location` in the specified `$server`.
+
+``` ruby
+nginx::server::location::alias { "assets-directory":
+  server => 'example.org',
+  location => 'assets'
+}
+```
+
+See `tests/alias-location.example.org.pp` for more examples.
 
 # Run tests
 
@@ -90,6 +134,13 @@ $ make test
 ```
 
 Hint: The tests will need sudo rights and will write into /tmp/pp-nginx-results. Every other file should not be affected.
+
+# Changelog
+
+* dev
+  - `nginx::server::location::alias` adds the alias definition, to the nginx location specified
+* 1.0.0 (2014/03/16)
+  - Initial release
 
 # License
 

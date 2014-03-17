@@ -11,17 +11,27 @@ nginx::server { $domain_name:
   "
 }
 
-nginx::server::location::alias { "with-content":
+nginx::server::location { "with-content":
   location => "~ /assets/(.*)",
   server => $domain_name,
-  location_alias => '/var/www/$domain_name/assets/$1',
   content => "
         index index.html;
-  "
+"
 }
 
-nginx::server::location::alias { "without-content":
+nginx::server::location::alias { "alias-with-content":
+  server => $domain_name,
+  location => "with-content",
+  local_directory => '/var/www/$domain_name/assets/$1',
+}
+
+nginx::server::location { "without-content":
   location => "~ /other-assets/(.*)",
   server => $domain_name,
-  location_alias => '/var/www/$domain_name/assets/$1',
+}
+
+nginx::server::location::alias { "alias-without-content":
+  location => "without-content",
+  server => $domain_name,
+  local_directory => '/var/www/$domain_name/assets/$1',
 }

@@ -7,6 +7,5 @@ server {
     location ~ .* {
 
         root /var/www/simple-locations.example.org;
-  
     }
 }

@@ -1,13 +1,16 @@
 define nginx::server::location::alias (
   $ensure                       = present,
   $server                       = undef,
-  $location_alias               = undef,
-  $location                     = $name,
-  $location_config_template     = "nginx/conf.d/location.conf.erb",
-  $order                        = 50,
+  $location			= undef,
+  $local_directory              = undef,
+  $order                        = "050",
   $content                      = undef
 ) {
-  $alias_content = "        alias ${location_alias};"
+  $server_config_file_name = getparam(Nginx::Server[$server], "server_config_file_name")
+  $location_order = getparam(Nginx::Server::Location[$location], "order")
+
+  $alias_content = "        alias ${local_directory};
+"
 
   if $content == undef {
     $expanded_content = "${alias_content}"
@@ -16,12 +19,10 @@ define nginx::server::location::alias (
 ${content}"
   }
 
-  nginx::server::location { "${server}_location_rewrite_${name}":
-    ensure => $ensure,
+  concat::fragment{ "${server_config_file_name}_location_${name}_body":
+    ensure  => $ensure,
+    target  => $server_config_file_name,
     content => $expanded_content,
-    location_config_template => $location_config_template,
-    location => $location,
-    server => $server,
-    order => $order,
+    order   => "$location_order+$order",
   }
 }

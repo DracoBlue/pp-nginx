@@ -1,3 +1,5 @@
+include nginx
+
 nginx::server { "simple.example.org":
   ensure => present,
   server_config_file_name => "/tmp/pp-nginx-results/simple.example.org.conf",

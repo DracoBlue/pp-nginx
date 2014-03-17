@@ -15,6 +15,7 @@ define nginx::server (
       owner => $server_config_owner,
       group => $server_config_group,
       mode  => $server_config_mode,
+      order => 'alpha'
     }
 
    if defined(Service['nginx']) {
@@ -26,13 +27,13 @@ define nginx::server (
     concat::fragment{ "${server_config_file_name}_header":
       target  => $server_config_file_name,
       content => template($server_config_header_template),
-      order   => '01'
+      order   => '001+'
     }
 
     concat::fragment{ "${server_config_file_name}_footer":
       target  => $server_config_file_name,
       content => template($server_config_footer_template),
-      order   => '99'
+      order   => '999+'
     }
   } else {
      file { "$server_config_file_name":
