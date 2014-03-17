@@ -52,7 +52,7 @@ nginx::server::location { "assets":
 }
 ```
 
-Result (`/etc/nginx/example.org.conf`):
+Result (`/etc/nginx/conf.d/example.org.conf`):
 
 ```
 server {
