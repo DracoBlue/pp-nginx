@@ -75,11 +75,11 @@ There are only 3 classes in this puppet module.
 * private
   * `include nginx::package`: is loaded by the `nginx` class, to ensure that the nginx package is available on the operating system
   * `include nginx::service`: is loaded by the `nginx` class, to ensure that the nginx service control is available
-  * `include nginx::base`: is used by `nginx::location` and `nginx::server` to ensure that the server is reloaded on file changes
+  * `include nginx::base`: is used by `nginx::server::location` and `nginx::server` to ensure that the server is reloaded on file changes
 
 ## Types
 
-See the Example at the beginning for explanation how the `nginx::server` and `nginx::location` type work together.
+See the Example at the beginning for explanation how the `nginx::server` and `nginx::server::location` type work together.
 
 ### `nginx::server`
 
