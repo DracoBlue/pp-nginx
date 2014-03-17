@@ -128,6 +128,21 @@ nginx::server::location::alias { "assets-directory":
 
 See `tests/alias-location.example.org.pp` for more examples.
 
+### `nginx::server::location::access`
+
+Adds `allow` and `deny` definitions to a given `$location` in the specified `$server`.
+
+``` ruby
+nginx::server::location::access { "assets-directory":
+  server => 'example.org',
+  location => 'assets',
+  allow => ["127.0.0.1", "10.10.10.0/26"],
+  deny => ["192.168.0.1"]
+}
+```
+
+See `tests/access-location.example.org.pp` for more examples.
+
 # Run tests
 
 ``` console
@@ -139,6 +154,7 @@ Hint: The tests will need sudo rights and will write into /tmp/pp-nginx-results.
 # Changelog
 
 * dev
+  - added `nginx::server::location::access` #6
   - travis now tests multiple puppet versions #5
   - `nginx::server::location::alias` adds the alias definition, to the nginx location specified #3
 * 1.0.0 (2014/03/16)
