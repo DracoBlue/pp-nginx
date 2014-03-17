@@ -201,7 +201,7 @@ Hint: The tests will need sudo rights and will write into /tmp/pp-nginx-results.
 # Changelog
 
 * 1.2.0 (2014/03/17)
-  - Changed properties for `$location` and `$server` to resources instead of strings
+  - Changed properties for `$location` and `$server` to resources instead of strings #10
   - Removed `$server` parameter for `nginx::server::location::*` #9
 * 1.1.0 (2014/03/17)
   - added `nginx::server::location::auth-basic` #8
