@@ -139,7 +139,8 @@ Hint: The tests will need sudo rights and will write into /tmp/pp-nginx-results.
 # Changelog
 
 * dev
-  - `nginx::server::location::alias` adds the alias definition, to the nginx location specified
+  - travis now tests multiple puppet versions #5
+  - `nginx::server::location::alias` adds the alias definition, to the nginx location specified #3
 * 1.0.0 (2014/03/16)
   - Initial release
 

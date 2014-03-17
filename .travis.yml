@@ -6,7 +6,7 @@ before_script:
   - sudo PUPPET_VERSION=$PUPPET_VERSION bin/ensure_puppet_version
 env:
   matrix:
+    - PUPPET_VERSION=3.4.0
     - PUPPET_VERSION=3.3.0
     - PUPPET_VERSION=2.7.17
     - PUPPET_VERSION=2.7.13
-    - PUPPET_VERSION=2.7.9

@@ -1,8 +1,5 @@
 #!/bin/bash
 
-puppet --version
-export
-
 if [ ! `puppet --version | grep "$PUPPET_VERSION"` ]
 then
     apt-get install --yes lsb-release
