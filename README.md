@@ -116,7 +116,7 @@ See `tests/simple-locations.example.org.pp` for more examples.
 
 ### `nginx::server::location::alias`
 
-Adds a `alias` definition to map to a `$directory` for to the given `$location` in the specified `$server`.
+Adds an `alias` definition to map to a `$directory` for to the given `$location` in the specified `$server`.
 
 ``` ruby
 nginx::server::location::alias { "assets-directory":
