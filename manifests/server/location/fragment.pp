@@ -2,11 +2,11 @@
 # This is ONLY used by the other location::* types. Please do not invoke it directly!
 #
 define nginx::server::location::fragment (
-  $server                       = undef,
-  $location			            = undef,
-  $content                      = undef,
-  $ensure                       = present,
-  $order                        = undef,
+  $server = undef,
+  $location	= undef,
+  $content = undef,
+  $ensure = present,
+  $order = undef,
 ) {
   validate_string($server)
   validate_string($location)
@@ -18,10 +18,10 @@ define nginx::server::location::fragment (
 
   if $content != "" {
     concat::fragment{ "${server_config_file_name}_location_${name}":
-      ensure  => $ensure,
-      target  => $server_config_file_name,
+      ensure => $ensure,
+      target => $server_config_file_name,
       content => $content,
-      order   => "$location_order+$order",
+      order => "$location_order+$order",
     }
   }
 }
