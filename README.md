@@ -148,7 +148,7 @@ See `tests/access-location.example.org.pp` for more examples.
 This type is used within `nginx::server::location::access` and other `nginx::server::location::*` types to generate
 the location fragment into the `nginx::server::location`.
 
-Example usage (taken from `nginx::server::location::access):
+Example usage (taken from `nginx::server::location::access`):
 
 ``` ruby
 define nginx::server::location::access (
