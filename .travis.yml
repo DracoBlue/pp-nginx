@@ -3,10 +3,10 @@ rvm:
   - 1.8.7
 script: "make test"
 before_script:
-  - sudo PUPPET_VERSION=$PUPPET_VERSION bin/ensure_puppet_version
+  - sudo PUPPET_VERSION=$PUPPET_VERSION FACTER_VERSION=$FACTER_VERSION bin/ensure_puppet_version
 env:
   matrix:
-    - PUPPET_VERSION=3.4.0
-    - PUPPET_VERSION=3.3.0
-    - PUPPET_VERSION=2.7.17
-    - PUPPET_VERSION=2.7.13
+    - PUPPET_VERSION=3.4.0 FACTER_VERSION=2.
+    - PUPPET_VERSION=3.3.0 FACTER_VERSION=2.
+    - PUPPET_VERSION=2.7.17 FACTER_VERSION=1.
+    - PUPPET_VERSION=2.7.13 FACTER_VERSION=1.

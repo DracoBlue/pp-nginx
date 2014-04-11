@@ -15,5 +15,5 @@ then
         sudo dpkg -i $DEB
         sudo apt-get update
     fi
-    sudo apt-get install --force-yes --yes puppet=${PUPPET_VERSION}* puppet-common=${PUPPET_VERSION}*
+    sudo apt-get install --force-yes --yes puppet=${PUPPET_VERSION}* puppet-common=${PUPPET_VERSION}* facter=${FACTER_VERSION}*
 fi
