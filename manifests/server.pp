@@ -6,7 +6,8 @@ define nginx::server (
   $server_config_owner = 'root',
   $server_config_group = 'root',
   $server_config_mode = '0644',
-  $content = ""
+  $content = "",
+  $indention = "    ",
 ) {
   include nginx::base
 
@@ -26,13 +27,23 @@ define nginx::server (
 
     concat::fragment{ "${server_config_file_name}_header":
       target => $server_config_file_name,
-      content => template($server_config_header_template),
+      content => regsubst(template($server_config_header_template), "^(.*)$", "\\1", "G"),
       order => '001+'
     }
 
-    concat::fragment{ "${server_config_file_name}_footer":
+  if $content != "" {
+    $content_with_indention = regsubst($content, "^(.*)$", "${indention}\\1", "G")
+    concat::fragment{ "${server_config_file_name}_body":
+      ensure => $ensure,
       target => $server_config_file_name,
-      content => template($server_config_footer_template),
+      content => "\n${content_with_indention}",
+      order => "025+",
+    }
+  }
+
+  concat::fragment{ "${server_config_file_name}_footer":
+      target => $server_config_file_name,
+      content => regsubst(template($server_config_footer_template), "^(.*)$", "\\1", "G"),
       order => '999+'
     }
   } else {

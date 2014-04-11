@@ -15,11 +15,8 @@ $server_config_file_name = "/tmp/pp-nginx-results/$domain_name.conf"
 nginx::server { $domain_name:
   ensure => present,
   server_config_file_name => $server_config_file_name,
-  content => "
-    listen                *:80;
-
-    server_name           $domain_name;
-  "
+  content => "listen                *:80;
+server_name           $domain_name;"
 }
 
 nginx::server::location { "with-multiple-blocks":

@@ -35,19 +35,15 @@ $server = "example.org"
 
 # define new server (/vhost)
 nginx::server { $server:
-  content => "
-    listen *:80;
-    server_name $server;
-"
+  content => "listen *:80;
+server_name $server;"
 }
 
 # define a location
 nginx::server::location { "assets":
   location => "~ ^/",
   server => Nginx::Server[$server],
-  content => "
-        root /var/www/assets/;
-"
+  content => "root /var/www/assets/;"
 }
 ```
 
@@ -55,12 +51,10 @@ Result (`/etc/nginx/conf.d/example.org.conf`):
 
 ```
 server {
-
     listen *:80;
     server_name example.org;
 
     location ~ ^/ {
-
         root /var/www/assets/;
     }
 }
@@ -88,10 +82,8 @@ Adds a new `server` in a file called `/etc/nginx/conf.d/$name.conf`.
 ``` ruby
 nginx::server { "example.org":
   server => 'example.org',
-  content => "
-    listen *:80;
-    server_name example.org;
-"
+  content => "listen *:80;
+server_name example.org;"
 }
 ```
 
@@ -105,9 +97,7 @@ Adds a `location` block definition to the given `$server`.
 nginx::server::location { "assets":
   server => Nginx::Server['example.org'],
   location => '~ ^/assets/(.+)',
-  content => "
-      root /var/www;
-"
+  content => "root /var/www;"
 }
 ```
 
@@ -200,6 +190,8 @@ Hint: The tests will need sudo rights and will write into /tmp/pp-nginx-results.
 
 # Changelog
 
+* 1.3.x
+  - Use indention parameter to automagicly indent all given "content" lines
 * 1.2.0 (2014/03/17)
   - Changed properties for `$location` and `$server` to resources instead of strings #10
   - Removed `$server` parameter for `nginx::server::location::*` #9

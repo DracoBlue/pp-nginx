@@ -1,11 +1,8 @@
 server {
-
     listen                *:80;
-
     server_name           simple-locations.example.org;
-  
-    location ~ .* {
 
+    location ~ .* {
         root /var/www/simple-locations.example.org;
     }
 }

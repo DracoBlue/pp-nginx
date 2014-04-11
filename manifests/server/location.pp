@@ -7,6 +7,7 @@ define nginx::server::location (
   $location_config_header_template = "nginx/conf.d/location_header.conf.erb",
   $location_config_footer_template = "nginx/conf.d/location_footer.conf.erb",
   $order = "050+$name",
+  $indention = "    ",
 ) {
   include nginx::base
 
@@ -19,27 +20,31 @@ define nginx::server::location (
   }
 
   $server_config_file_name = getparam($server, "server_config_file_name")
+  $server_indention = getparam($server, "indention")
 
+  $header_with_indention = regsubst(template($location_config_header_template), "^(.*)$", "${server_indention}\\1", "G")
   concat::fragment{ "${server_config_file_name}_location_${name}_header":
     ensure => $ensure,
     target => $server_config_file_name,
-    content => template($location_config_header_template),
+    content => "\n\n${header_with_indention}",
     order => "$order+001",
   }
 
   if $content != "" {
+    $content_with_indention = regsubst($content, "^(.*)$", "${server_indention}${indention}\\1", "G")
     concat::fragment{ "${server_config_file_name}_location_${name}_body":
       ensure => $ensure,
       target => $server_config_file_name,
-      content => $content,
+      content => "\n${content_with_indention}",
       order => "$order+090",
     }
   }
 
+  $footer_with_indention = regsubst(template($location_config_footer_template), "^(.*)$", "${server_indention}\\1", "G")
   concat::fragment{ "${server_config_file_name}_location_${name}_footer":
     ensure => $ensure,
     target => $server_config_file_name,
-    content => template($location_config_footer_template),
+    content => "\n${footer_with_indention}",
     order => "$order+099",
   }
 

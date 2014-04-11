@@ -4,19 +4,15 @@ $server_config_file_name = "/tmp/pp-nginx-results/$domain_name.conf"
 nginx::server { $domain_name:
   ensure => present,
   server_config_file_name => $server_config_file_name,
-  content => "
-    listen                *:80;
-
-    server_name           $domain_name;
-  "
+  content => "listen                *:80;
+server_name           $domain_name;"
 }
 
 nginx::server::location { "with-content":
   location => "~ /assets/",
   server => Nginx::Server[$domain_name],
-  content => "
-        index index.html;
-"
+  content => "index index.html;
+root /var/www;"
 }
 
 nginx::server::location::auth-basic { "auth-basic-with-content":

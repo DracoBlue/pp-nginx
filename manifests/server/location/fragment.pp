@@ -20,13 +20,16 @@ define nginx::server::location::fragment (
 
   $server = getparam($location, "server")
   $server_config_file_name = getparam($server, "server_config_file_name")
+  $server_indention = getparam($server, "indention")
   $location_order = getparam($location, "order")
+  $location_indention = getparam($location, "indention")
 
   if $content != "" {
+    $content_with_indention = regsubst($content, "^(.+)$", "${server_indention}${location_indention}\\1", "G")
     concat::fragment{ "${server_config_file_name}_location_${name}":
       ensure => $ensure,
       target => $server_config_file_name,
-      content => $content,
+      content => "${content_with_indention}",
       order => "$location_order+$order",
     }
   }
