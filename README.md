@@ -191,6 +191,7 @@ Hint: The tests will need sudo rights and will write into /tmp/pp-nginx-results.
 # Changelog
 
 * 1.3.x
+  - added message if no proper `$server` is given to location (e.g. if `server_config_file_name` parameter is missing) refs #11
   - tests use a specific facter version now refs #14
   - Use indention parameter to automagicly indent all given "content" lines refs #13
 * 1.2.0 (2014/03/17)

@@ -20,6 +20,11 @@ define nginx::server::location (
   }
 
   $server_config_file_name = getparam($server, "server_config_file_name")
+
+  if $server_config_file_name == "" {
+    fail("The given $server does not contain a server_config_file_name")
+  }
+
   $server_indention = getparam($server, "indention")
 
   $header_with_indention = regsubst(template($location_config_header_template), "^(.*)$", "${server_indention}\\1", "G")
