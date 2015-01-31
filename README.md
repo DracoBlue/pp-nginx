@@ -6,7 +6,7 @@ A very slim nginx module for puppet.
 * Build-Status: [![Build Status](https://travis-ci.org/DracoBlue/pp-nginx.png?branch=master)](https://travis-ci.org/DracoBlue/pp-nginx)
 * Official Site: http://dracoblue.net/
 
-pp-ningx is copyright 2014 by DracoBlue http://dracoblue.net
+pp-ningx is copyright 2014-2015 by DracoBlue http://dracoblue.net
 
 # Installation
 
@@ -190,6 +190,8 @@ Hint: The tests will need sudo rights and will write into /tmp/pp-nginx-results.
 
 # Changelog
 
+* 1.3.1 (2015/01/31)
+  - fixed recursive symlinks in test folder
 * 1.3.0 (2014/05/18)
   - added message if no proper `$server` is given to location (e.g. if `server_config_file_name` parameter is missing) refs #11
   - tests use a specific facter version now refs #14
