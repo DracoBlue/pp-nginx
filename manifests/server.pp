@@ -28,7 +28,7 @@ define nginx::server (
 
     concat::fragment{ "${server_config_file_name}_header":
       target => $server_config_file_name,
-      content => regsubst(template($server_config_header_template), '^(.*)$', '\\1', 'G'),
+      content => regsubst(template($server_config_header_template), '^(.*)$', '\1', 'G'),
       order => '001+'
     }
 
@@ -50,7 +50,7 @@ define nginx::server (
 
     concat::fragment{ "${server_config_file_name}_footer":
       target => $server_config_file_name,
-      content => regsubst(template($server_config_footer_template), '^(.*)$', '\\1', 'G'),
+      content => regsubst(template($server_config_footer_template), '^(.*)$', '\1', 'G'),
       order => '999+'
     }
   } else {
