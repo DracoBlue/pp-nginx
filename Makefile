@@ -21,7 +21,11 @@ test:
 	@make test-ensure-required-modules
 	sudo ./bin/run_tests_unix
 
-validate:
+puppet-lint:
+	@echo "Validate with puppet-lint"
+	rake lint
+
+validate-puppet:
 
 	@echo "Validate with puppet parser"
 	puppet parser validate `find . | grep .pp$`
