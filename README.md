@@ -133,14 +133,14 @@ before the `allow` rules, use two `access` definitions (like in `tests/access-lo
 
 See `tests/access-location.example.org.pp` for more examples.
 
-### `nginx::server::location::auth-basic`
+### `nginx::server::location::auth_basic`
 
 Adds `auth_basic` and `auth_basic_user_file` definitions to a given `$location`.
 
 Be sure that nginx can access the absolute path given to in `$user_file`. The `$text` must not contain quotation marks (").
 
 ``` ruby
-nginx::server::location::auth-basic { "assets-directory":
+nginx::server::location::auth_basic { "assets-directory":
   location => Nginx::Server::Location['assets'],
   text => 'This is restricted',
   user_file => '/etc/nginx/.htpasswd'
@@ -214,6 +214,7 @@ Hint: The tests will need sudo rights and will write into /tmp/pp-nginx-results.
 # Changelog
 
 * dev
+  - [BC] renamed `nginx::server::location::auth-basic` to `nginx::server::location::auth_basic` for puppet 4.0 compatibility
   - added template `nginx::templates::www_rewrite_http_server` for redirect of e.g. `www.example.org` to `example.org`
 * 1.3.1 (2015/01/31)
   - fixed recursive symlinks in test folder
