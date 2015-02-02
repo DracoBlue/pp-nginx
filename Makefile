@@ -12,8 +12,13 @@ test-update-required-modules:
 
 test-ensure-required-modules:
 
+	@if [ ! -d tests/modules ]; then mkdir tests/modules; fi
 	@if [ ! -d tests/modules/stdlib ]; then cd tests/modules; wget -q https://forgeapi.puppetlabs.com/v3/files/puppetlabs-stdlib-4.1.0.tar.gz && tar -zxf puppetlabs-stdlib-* && rm puppetlabs-stdlib-*.tar.gz && mv puppetlabs-stdlib-* stdlib; cd ../../; fi
 	@if [ ! -d tests/modules/concat ]; then cd tests/modules; wget -q https://forgeapi.puppetlabs.com/v3/files/puppetlabs-concat-1.0.2.tar.gz && tar -zxf puppetlabs-concat-* && rm puppetlabs-concat-*.tar.gz && mv puppetlabs-concat-* concat; cd ../../; fi
+	@if [ ! -d tests/modules/nginx ]; then cd tests/modules; mkdir nginx; cd ../../; fi
+	@if [ ! -L tests/modules/nginx/Modulefile ]; then cd tests/modules/nginx; ln -s ../../../Modulefile .; cd ../../../; fi
+	@if [ ! -L tests/modules/nginx/manifests ]; then cd tests/modules/nginx; ln -s ../../../manifests .; cd ../../../; fi
+	@if [ ! -L tests/modules/nginx/templates ]; then cd tests/modules/nginx; ln -s ../../../templates .; cd ../../../; fi
 
 test:
 
