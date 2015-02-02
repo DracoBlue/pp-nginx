@@ -22,13 +22,14 @@ test:
 	sudo ./bin/run_tests_unix
 
 puppet-lint:
+
 	@echo "Validate with puppet-lint"
 	rake lint
 
 validate-puppet:
 
 	@echo "Validate with puppet parser"
-	puppet parser validate `find . | grep .pp$`
+	puppet parser validate `find . | grep '.pp$$'`
 
 .PHONY: test help
 
