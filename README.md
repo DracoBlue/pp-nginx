@@ -212,7 +212,7 @@ Hint: The tests will need sudo rights and will write into /tmp/pp-nginx-results.
 
 # Changelog
 
-* dev
+* 2.0.0 (2015/02/02)
   - removed symlink from tests folder (because they are not supported in packages)
   - [BC] removed unused `nginx::base` class
   - added puppet lint and puppet parser validate to travis tests
