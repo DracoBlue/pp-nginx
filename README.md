@@ -69,7 +69,6 @@ There are only 3 classes in this puppet module.
 * private
   * `include nginx::package`: is loaded by the `nginx` class, to ensure that the nginx package is available on the operating system
   * `include nginx::service`: is loaded by the `nginx` class, to ensure that the nginx service control is available
-  * `include nginx::base`: is used by `nginx::server::location` and `nginx::server` to ensure that the server is reloaded on file changes
 
 ## Types
 
@@ -214,6 +213,7 @@ Hint: The tests will need sudo rights and will write into /tmp/pp-nginx-results.
 # Changelog
 
 * dev
+  - removed unused `nginx::base` class
   - added puppet lint and puppet parser validate to travis tests
   - fixed line indention and some other things to make puppet-lint happy #17
   - [BC] renamed `nginx::server::location::auth-basic` to `nginx::server::location::auth_basic` for puppet 4.0 compatibility

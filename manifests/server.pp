@@ -10,8 +10,6 @@ define nginx::server (
   $content = '',
   $indention = '    ',
 ) {
-  include nginx::base
-
   if $ensure == present {
     concat { $server_config_file_name:
       owner => $server_config_owner,

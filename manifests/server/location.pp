@@ -10,8 +10,6 @@ define nginx::server::location (
   $order = "050+${name}",
   $indention = '    ',
 ) {
-  include nginx::base
-
   if $server == undef {
     fail('Please provide a $server for this location')
   }
