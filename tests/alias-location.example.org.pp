@@ -1,5 +1,5 @@
 $domain_name = 'alias-location.example.org'
-$server_config_file_name = '/tmp/pp-nginx-results/$domain_name.conf'
+$server_config_file_name = "/tmp/pp-nginx-results/${domain_name}.conf"
 
 nginx::server { $domain_name:
   ensure => present,
