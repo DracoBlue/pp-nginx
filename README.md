@@ -180,6 +180,29 @@ define nginx::server::location::access (
 }
 ```
 
+## Templates
+
+This area will contain some templates, which are frequently used. They are available in the `manifests/templates/` folder.
+
+### `nginx::templates::www_rewrite_http_server`
+
+Redirect a given domain from `www.example.org` to `example.org` with an own nginx server entry.
+
+``` puppet
+nginx::templates::www_rewrite_http_server { "example-www-redirect":
+  server_name => "example.org",
+}
+```
+
+Will generate:
+``` text
+server {
+    listen 80;
+    server_name www.example.org;
+    rewrite ^(.*) http://example.org$1 permanent;
+}
+```
+
 # Run tests
 
 ``` console
@@ -190,6 +213,8 @@ Hint: The tests will need sudo rights and will write into /tmp/pp-nginx-results.
 
 # Changelog
 
+* dev
+  - added template `nginx::templates::www_rewrite_http_server` for redirect of e.g. `www.example.org` to `example.org`
 * 1.3.1 (2015/01/31)
   - fixed recursive symlinks in test folder
 * 1.3.0 (2014/05/18)

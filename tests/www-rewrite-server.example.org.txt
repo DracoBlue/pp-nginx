@@ -1,0 +1,5 @@
+server {
+    listen 80;
+    server_name www.test.www-rewrite-server.example.org;
+    rewrite ^(.*) http://test.www-rewrite-server.example.org$1 permanent;
+}
