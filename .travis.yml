@@ -4,7 +4,7 @@ rvm:
 script: "make test && make validate && make puppet-lint"
 before_script:
   - sudo PUPPET_VERSION=$PUPPET_VERSION FACTER_VERSION=$FACTER_VERSION bin/ensure_puppet_version
-  - sudo gem install puppet-lint
+  - gem install puppet-lint
 env:
   matrix:
     - PUPPET_VERSION=3.7.4 FACTER_VERSION=2.
