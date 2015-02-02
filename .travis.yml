@@ -1,7 +1,7 @@
 language: ruby
 rvm:
   - 1.8.7
-script: "make test && make validate && make puppet-lint"
+script: "make test && make validate-puppet && make puppet-lint"
 before_script:
   - sudo PUPPET_VERSION=$PUPPET_VERSION FACTER_VERSION=$FACTER_VERSION bin/ensure_puppet_version
   - gem install puppet-lint
