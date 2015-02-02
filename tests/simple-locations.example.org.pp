@@ -12,6 +12,6 @@ nginx::server::location { 'everything':
   location => '~ .*',
   server => Nginx::Server[$domain_name],
   order => 52,
-  content => 'root /var/www/$domain_name;'
+  content => "root /var/www/${domain_name};"
 }
 
