@@ -21,6 +21,11 @@ test:
 	@make test-ensure-required-modules
 	sudo ./bin/run_tests_unix
 
+validate:
+
+	@echo "Validate with puppet parser"
+	puppet parser validate `find . | grep .pp$`
+
 .PHONY: test help
 
 # vim: ts=4:sw=4:noexpandtab!:

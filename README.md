@@ -214,6 +214,8 @@ Hint: The tests will need sudo rights and will write into /tmp/pp-nginx-results.
 # Changelog
 
 * dev
+  - added puppet lint and puppet parser validate to travis tests
+  - fixed line indention and some other things to make puppet-lint happy #17
   - [BC] renamed `nginx::server::location::auth-basic` to `nginx::server::location::auth_basic` for puppet 4.0 compatibility
   - added template `nginx::templates::www_rewrite_http_server` for redirect of e.g. `www.example.org` to `example.org`
 * 1.3.1 (2015/01/31)

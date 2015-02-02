@@ -1,3 +1,5 @@
+# Is loaded by the `nginx` class, to ensure that the nginx package is
+# available on the operating system
 class nginx::package (
   $ensure = present
 ) {
