@@ -1,4 +1,5 @@
 language: ruby
+sudo: required
 rvm:
   - 1.8.7
 script: "make test && make validate-puppet && make puppet-lint"
@@ -7,6 +8,10 @@ before_script:
   - gem install puppet-lint
 env:
   matrix:
+    - PUPPET_VERSION=4.2.1 FACTER_VERSION=3.
+    - PUPPET_VERSION=4.1.0 FACTER_VERSION=2.
+    - PUPPET_VERSION=4.0.0 FACTER_VERSION=2.
+    - PUPPET_VERSION=3.8.2 FACTER_VERSION=2.
     - PUPPET_VERSION=3.7.4 FACTER_VERSION=2.
     - PUPPET_VERSION=3.6.2 FACTER_VERSION=2.
     - PUPPET_VERSION=3.5.1 FACTER_VERSION=2.
