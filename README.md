@@ -204,14 +204,33 @@ server {
 
 # Run tests
 
+On Linux:
+
 ``` console
 $ make test
+Successful tests: 7 / 7
 ```
 
 Hint: The tests will need sudo rights and will write into /tmp/pp-nginx-results. Every other file should not be affected.
 
+In the Vagrant Box:
+
+``` console
+$ vagrant up --provision
+$ vagrant ssh
+$ sudo -s
+$ cd /vagrant
+$ PUPPET_AGENT_VERSION=1.2 bin/ensure_puppet_version
+$ make test
+Successful tests: 7 / 7
+``` 
+
 # Changelog
 
+* dev
+  - added Vagrantfile for tests
+  - added 4.x support
+  - fixed file encoding for `nginx::templates::www_rewrite_http_server` template
 * 2.0.0 (2015/02/02)
   - removed symlink from tests folder (because they are not supported in packages)
   - [BC] removed unused `nginx::base` class
