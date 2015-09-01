@@ -1,7 +1,48 @@
 #!/bin/bash
 
-if [ ! `puppet --version | grep "$PUPPET_VERSION"` ]
+# puppet >= 4.0
+if [ "$PUPPET_AGENT_VERSION" != "" ]
 then
+    # check puppet agent for $PUPPET_AGENT_VERSION
+    if [ ! -z "`dpkg -s puppet-agent | grep '^Status' | cut -f '2-' -d ' ' | grep installed`" ] 
+    then
+    	# puppet-agent package is installed
+    	if [ ! -z "`dpkg -s puppet-agent | grep '^Version' | cut -f '2-' -d ' ' | grep ^$PUPPET_AGENT_VERSION`" ]
+    	then
+    	    # puppet-agent version is correct
+            exit 0
+	fi
+    fi
+
+    apt-get install --yes lsb-release
+    DISTRIB_CODENAME=$(lsb_release --codename --short)
+
+    PATH=$PATH:/opt/puppetlabs/bin/
+    DEB="puppetlabs-release-pc1-${DISTRIB_CODENAME}.deb"
+    DEB_PROVIDES="/etc/apt/sources.list.d/puppetlabs-pc1.list" # Assume that this file's existence means we have the Puppet Labs repo added
+
+
+    if [ ! -e $DEB_PROVIDES ]
+    then
+        # Print statement useful for debugging, but automated runs of this will interpret any output as an error
+        # print "Could not find $DEB_PROVIDES - fetching and installing $DEB"
+        wget -q http://apt.puppetlabs.com/$DEB
+        sudo dpkg -i $DEB
+        sudo apt-get update
+    fi
+
+    sudo apt-get remove --force-yes --yes puppet-agent
+    sudo apt-get install --force-yes --yes puppet-agent=${PUPPET_AGENT_VERSION}*
+fi
+
+# puppet < 4.0
+if [[ "$PUPPET_VERSION" ]]
+then
+    if [ ! -z `puppet --version | grep "^$PUPPET_VERSION"` ]
+    then
+        exit 0
+    fi
+
     apt-get install --yes lsb-release
     DISTRIB_CODENAME=$(lsb_release --codename --short)
     DEB="puppetlabs-release-${DISTRIB_CODENAME}.deb"
@@ -15,5 +56,6 @@ then
         sudo dpkg -i $DEB
         sudo apt-get update
     fi
+
     sudo apt-get install --force-yes --yes puppet=${PUPPET_VERSION}* puppet-common=${PUPPET_VERSION}* facter=${FACTER_VERSION}*
 fi
