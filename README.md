@@ -231,6 +231,7 @@ Successful tests: 7 / 7
   - added Vagrantfile for tests
   - added 4.x support
   - fixed file encoding for `nginx::templates::www_rewrite_http_server` template
+  - fixed `nginx::templates::www_rewrite_http_server` if no content is given in puppet 4.x
 * 2.0.0 (2015/02/02)
   - removed symlink from tests folder (because they are not supported in packages)
   - [BC] removed unused `nginx::base` class

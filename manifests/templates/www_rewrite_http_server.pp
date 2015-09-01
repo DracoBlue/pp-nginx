@@ -13,7 +13,7 @@ define nginx::templates::www_rewrite_http_server (
   $content = '',
   $indention = '    ',
 ) {
-  if ($content)
+  if ($content != '')
   {
     $content_with_newline = "
 ${content}"
