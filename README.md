@@ -221,6 +221,8 @@ $ vagrant ssh
 $ sudo -s
 $ cd /vagrant
 $ PUPPET_AGENT_VERSION=1.2 bin/ensure_puppet_version
+$ apt-get install rake # required for puppet-lint
+$ gem install puppet-lint
 $ make test
 Successful tests: 7 / 7
 ``` 
@@ -228,8 +230,8 @@ Successful tests: 7 / 7
 # Changelog
 
 * dev
-  - added Vagrantfile for tests
   - added 4.x support
+  - added Vagrantfile for tests
   - fixed file encoding for `nginx::templates::www_rewrite_http_server` template
   - fixed `nginx::templates::www_rewrite_http_server` if no content is given in puppet 4.x
 * 2.0.0 (2015/02/02)

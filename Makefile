@@ -34,7 +34,7 @@ puppet-lint:
 validate-puppet:
 
 	@echo "Validate with puppet parser"
-	puppet parser validate `find . | grep '.pp$$'`
+	PATH=$(PATH):/opt/puppetlabs/bin/ && puppet parser validate `find . | grep '.pp$$'`
 
 .PHONY: test help
 
