@@ -7,6 +7,13 @@ then
   mkdir /tmp/pp-nginx-results/
 fi
 
+PUPPET_EXECUTABLE=puppet
+
+if [ -f /opt/puppetlabs/bin/puppet ]
+then
+	PUPPET_EXECUTABLE=/opt/puppetlabs/bin/puppet
+fi
+
 FAILED_TESTS=0
 TOTAL_TESTS=0
 SUCCESSFUL_TESTS=0
@@ -17,7 +24,7 @@ do
   then
     rm /tmp/pp-nginx-results/${WITHOUT_EXTENSION}.conf
   fi
-  puppet apply --modulepath=`pwd`/modules "$line"
+  $PUPPET_EXECUTABLE apply --modulepath=`pwd`/modules "$line"
   diff ${WITHOUT_EXTENSION}.txt /tmp/pp-nginx-results/${WITHOUT_EXTENSION}.conf
   if [ "$?" == 0 ]
   then
